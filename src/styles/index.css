@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/plus-jakarta-sans";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-navy-50: #eef2f9;
+  --color-navy-100: #d7e0ef;
+  --color-navy-200: #aebfdc;
+  --color-navy-300: #7f97c2;
+  --color-navy-400: #5371a6;
+  --color-navy-500: #36548a;
+  --color-navy-600: #26406f;
+  --color-navy-700: #1b3159;
+  --color-navy-800: #132544;
+  --color-navy-900: #0b1a33;
+  --color-navy-950: #060f21;
+
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065f46;
+
+  --color-mist: #f4f6fa;
+  --color-line: #e3e8f0;
+
+  --shadow-card: 0 1px 2px rgb(11 26 51 / 0.04), 0 8px 24px -12px rgb(11 26 51 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(11 26 51 / 0.05), 0 20px 40px -16px rgb(11 26 51 / 0.22);
+}
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-white text-navy-900 font-sans antialiased; }
+  h1, h2, h3, h4 { @apply font-display tracking-tight; }
+  :focus-visible { outline: 3px solid var(--color-emerald-500); outline-offset: 2px; border-radius: 6px; }
+  ::selection { background: var(--color-emerald-200); color: var(--color-navy-900); }
+}
+
+@utility btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-60; }
+@utility btn-primary { @apply btn bg-emerald-600 text-white shadow-sm hover:bg-emerald-700 active:bg-emerald-800; }
+@utility btn-navy { @apply btn bg-navy-900 text-white hover:bg-navy-800; }
+@utility btn-outline { @apply btn border border-line bg-white text-navy-800 hover:border-navy-300 hover:bg-mist; }
+@utility btn-ghost { @apply btn text-navy-700 hover:bg-mist; }
+@utility btn-sm { @apply px-3 py-1.5 text-xs rounded-lg; }
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .card { @apply rounded-2xl border border-line bg-white shadow-card; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.14em] text-emerald-600; }
+  .label { @apply mb-1.5 block text-sm font-medium text-navy-800; }
+  .input { @apply block w-full rounded-xl border border-line bg-white px-3.5 py-2.5 text-sm text-navy-900 placeholder:text-navy-300 transition focus:border-emerald-500 focus:outline-none focus:ring-4 focus:ring-emerald-500/15; }
+  .input-error { @apply border-red-400 focus:border-red-500 focus:ring-red-500/15; }
+  .field-error { @apply mt-1.5 text-xs font-medium text-red-600; }
+  .chip { @apply inline-flex items-center gap-1 rounded-full bg-mist px-2.5 py-1 text-xs font-medium text-navy-700; }
+  .section { @apply py-16 sm:py-20 lg:py-24; }
+  .section-title { @apply mt-2 text-3xl font-bold text-navy-900 sm:text-4xl; }
+  .section-lead { @apply mt-4 max-w-2xl text-base leading-relaxed text-navy-500 sm:text-lg; }
+  .prose-job ul { @apply mt-3 space-y-2; }
+  .prose-job li { @apply relative pl-6 text-navy-600 leading-relaxed; }
+  .prose-job li::before { content: ""; @apply absolute left-0 top-2 h-2 w-2 rounded-full bg-emerald-500; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+.hero-grid {
+  background-image:
+    radial-gradient(circle at 80% 10%, rgb(16 185 129 / 0.22), transparent 40%),
+    radial-gradient(circle at 10% 90%, rgb(54 84 138 / 0.45), transparent 45%),
+    linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+}
+@keyframes fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.animate-fade-up { animation: fade-up .45s ease-out both; }

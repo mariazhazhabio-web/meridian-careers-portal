@@ -1,0 +1,36 @@
+# Supabase CLI project config (local development: `supabase start`)
+project_id = "meridian-careers"
+
+[api]
+port = 54321
+schemas = ["public", "storage"]
+
+[db]
+port = 54322
+major_version = 15
+
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+
+[auth]
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://localhost:5173"]
+# HR accounts are provisioned by an administrator — public sign-up is disabled.
+enable_signup = false
+jwt_expiry = 3600
+
+[auth.email]
+enable_signup = false
+enable_confirmations = true
+
+[storage]
+file_size_limit = "5MiB"
+
+# Public applicants have no user JWT, so this function accepts the anon key only.
+[functions.submit-application]
+verify_jwt = false
+
+# Status emails require a signed-in admin JWT.
+[functions.notify-status]
+verify_jwt = true

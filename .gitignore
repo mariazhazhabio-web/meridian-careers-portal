@@ -1,0 +1,12 @@
+node_modules
+dist
+.env
+.env.local
+.env.production
+supabase/functions/.env
+supabase/.temp
+test-results
+tests/e2e-report
+*.log
+single-dist
+.wrangler
